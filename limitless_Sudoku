@@ -1,0 +1,66 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class sudoku {
+	
+	 static Scanner scan = new Scanner(System.in);
+	 public static final int n = scan.nextInt();
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[][] array = new int[n][n];
+        bruteSolve(0, 0, array);
+    }
+
+    public static void bruteSolve(int num1, int num2, int[][] array) {
+        for (int i = 1, count = 0; i < n + 1; i++) {
+            array[num1][num2] = i;
+            if (num2 == n - 1 && num1 == n - 1) {
+                if (isValid(array)) {
+                    count++;
+                    System.out.println(Arrays.deepToString(array));
+                    System.out.println(count);
+                }
+            } else if (num2 == n - 1) {
+                bruteSolve(num1 + 1, 0, array);
+            } else {
+                bruteSolve(num1, num2 + 1, array);
+            }
+        }
+    }
+
+    public static boolean isValid(int[][] array) {
+        int factorial = 1;
+        int fibonacci = 0;
+        int totalX1 = 1;
+        int totalY1 = 1;
+        int totalX2 = 0;
+        int totalY2 = 0;
+
+        for (int i = n; i > 0; i--) {
+            factorial = factorial * i;
+        }
+        for (int i = n; i > 0; i--) {
+            fibonacci = fibonacci + i;
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                totalY1 = totalY1 * array[i][j]; // checks all columns
+                totalX1 = totalX1 * array[j][i]; // checks all rows
+                totalX2 = totalX2 + array[j][i];
+                totalY2 = totalY2 + array[i][j];
+            }
+            if (totalX1 != factorial || totalY1 != factorial
+                    || totalX2 != fibonacci || totalY2 != fibonacci) {
+                return false;
+            }
+            totalX1 = 1;
+            totalY1 = 1;
+            totalX2 = 0;
+            totalY2 = 0;
+        }
+        return true;
+    }
+
+}
