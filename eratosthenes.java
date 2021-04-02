@@ -1,7 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-
 /* 에라토스테네스의 체 
    -소수를 찾는 방법
    
@@ -14,8 +13,7 @@ import java.util.Scanner;
    1. 모든 자연수를 나열
    2. 남은 수 중 아직 처리하지 않은 가장 작은 수(=i)를 찾는다.
    3. 남은 수 중 i의 배수를 모두 제거한다.(i는 제거X)
-   4. 더 이상 반복할 수 없을 때까지(=제곱근) 2번과 3번을 반복한다.
-   
+   4. 더 이상 반복할 수 없을 때까지(=제곱근) 2번과 3번을 반복한다.  
  */
 
 public class eratosthenes {
